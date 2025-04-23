@@ -121,6 +121,40 @@ npx -y @supabase/mcp-server-supabase@latest --access-token=<personal-access-toke
 
 This prevents write operations on any of your databases by executing SQL as a read-only Postgres user. Note that this flag only applies to database tools (`execute_sql` and `apply_migration`) and not to other tools like `create_project` or `create_branch`.
 
+### SSE Server
+
+The Server-Sent Events (SSE) server provides a web-based alternative to the standard stdio-based transport. This makes it easier to integrate with web applications and services that support SSE.
+
+To use the SSE server, please follow the steps below:
+
+```shell
+git clone https://github.com/supabase/mcp-server-supabase.git
+npm ci --ignore-scripts
+npm run build
+node packages/mcp-server-supabase/dist/sse.js
+```
+
+Or you can run the container:
+
+```shell
+docker build -t supabase-mcp-sse .
+docker run -p 3001:3001 supabase-mcp-sse
+```
+
+Access the SSE endpoint through:
+
+```
+http://localhost:3001/sse/<personal-access-token>
+```
+
+This will establish a server-sent events connection. The client can then send messages to:
+
+```
+http://localhost:3001/messages?sessionId=<session-id>
+```
+
+The session ID is provided by the SSE server when the connection is established.
+
 ## Tools
 
 _**Note:** This server is pre-1.0, so expect some breaking changes between versions. Since LLMs will automatically adapt to the tools available, this shouldn't affect most users._
