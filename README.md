@@ -127,7 +127,7 @@ The Server-Sent Events (SSE) server provides a web-based alternative to the stan
 
 To use the SSE server, please follow the steps below:
 
-```shell
+```bash
 git clone https://github.com/supabase/mcp-server-supabase.git
 npm ci --ignore-scripts
 npm run build
@@ -136,7 +136,7 @@ node packages/mcp-server-supabase/dist/sse.js
 
 Or you can run the container:
 
-```shell
+```bash
 docker build -t supabase-mcp-sse .
 docker run -p 3001:3001 supabase-mcp-sse
 ```
